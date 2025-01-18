@@ -1,20 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
-struct node{
+struct nodo{
     int data;
-    struct node* link;
-}typedef node;
+    struct nodo* link;
+}typedef nodo;
 int main()
 {
-    node* head = malloc(sizeof(node));
+    nodo* head = malloc(sizeof(nodo));
     head->data = 44;
-    head->link = malloc(sizeof(node));
+    head->link = malloc(sizeof(nodo));
     head->link->data = 33;
-    head->link->link = malloc(sizeof(node));
+    head->link->link = malloc(sizeof(nodo));
     head->link->link->data = 3;
     head->link->link->link = NULL; 
 
-    node* current; 
+    nodo* current; 
     current = head; 
 
     while(current != NULL)
@@ -32,7 +32,7 @@ int main()
     current = head; 
     while(current != NULL)
     {
-        node* temp = current;
+        nodo* temp = current;
         current = current->link;
 
         free(temp);
