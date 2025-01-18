@@ -6,6 +6,8 @@ struct nodo {
     struct nodo* link;
 } typedef nodo;
 
+void printList(nodo* head);
+
 // Funzione per stampare la lista
 void printList(nodo* head) {
     nodo* current = head;
@@ -19,35 +21,16 @@ void printList(nodo* head) {
     printf(" -> NULL\n");  // Indica la fine della lista
 }
 
-// Funzione per inserire in coda
-nodo* inserisci_in_coda(nodo* head, int value) {
-    nodo* nuovoNodo = malloc(sizeof(nodo));  // Crea il nuovo nodo
-    nuovoNodo->data = value;  // Imposta il valore
-    nuovoNodo->link = NULL;   // Il nuovo nodo deve puntare a NULL (fine lista)
+int main()
+{
+    nodo* head = malloc(sizeof(nodo));
+    head->data = 44;
+    head->link = malloc(sizeof(nodo));
+    head->link->data = 33;
+    head->link->link = malloc(sizeof(nodo));
+    head->link->link->data = 3;
+    head->link->link->link = NULL; 
 
-    if (head == NULL) {
-        return nuovoNodo;  // Se la lista è vuota, il nuovo nodo diventa la testa
-    }
-
-    nodo* current = head;
-    while (current->link != NULL) {
-        current = current->link;  // Trova l'ultimo nodo
-    }
-
-    current->link = nuovoNodo;  // Collega il nuovo nodo alla fine della lista
-    return head;
-}
-
-int main() {
-    nodo* head = NULL;
-
-    // Creazione della lista con l'inserimento in coda
-    head = inserisci_in_coda(head, 10);
-    head = inserisci_in_coda(head, 20);
-    head = inserisci_in_coda(head, 30);
-
-    // Stampa della lista
-    printList(head);  // Chiama la funzione per stampare la lista
-
+    printList(head); 
     return 0;
-}
+}    
