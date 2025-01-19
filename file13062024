@@ -1,3 +1,4 @@
+// conta partecipanti paesi;
 #include<stdio.h>
 #include<string.h>
 #define N 25
@@ -17,25 +18,25 @@ void provenienze(FILE* fp)
         numinvitati++;
     }
 
-    int cont[100]= {0};
-    for(int i = 0; i < numinvitati; i++)
+    int cont[100]= {0}; // ho bisogno di più contatori appunto per ogni paese quidni la soluzione giusta sarebbe creare un array
+    for(int i = 0; i < numinvitati; i++)// che ci sta per 100 paesi ad esempio e inizializzato a 0
     {
         for(int j = i+1 ; j < numinvitati; j++ )
         {
             if(strcmp(invitati1[i].stato, invitati1[j].stato) == 0)
             {
-                cont[j]++; 
-                break;
-            }
-        }
+                cont[j]++; // se trovo la corrispondenza aumento il primo elemento dell'array che sarebbe il numero dei partecipanti
+                break;// di quel paese 
+            }// e poi quando esco e rientro nel ciclo interno l'indice dellarray cambia e quidni cosi ho il mio nuovo contatore per 
+        }// il nuovo paese 
 
-        if(cont[i] == 0)
+        if(cont[i] == 0)// se non ho aumentato mai il contatore 
         {
-            cont[i] = 1;
+            cont[i] = 1;// significa che il paese ha un solo numero 
         }
     } 
 
-    for(int i = 0; i < numinvitati; i++)
+    for(int i = 0; i < numinvitati; i++)// stampo
     {
         if(cont[i] > 0)
         {
