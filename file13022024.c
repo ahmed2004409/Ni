@@ -52,3 +52,41 @@ int minuti(FILE* fp, char* cd)
 
    
 }
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) { // Verifica se il numero di parametri è inferiore a 2
+        printf("Errore: Devi fornire almeno il nome del file come parametro.\n");
+        return 1;
+    }
+
+    // Apertura del file
+    FILE *fp = fopen(argv[1], "r");
+    if (fp == NULL) {
+        printf("Errore nell'aprire il file: %s\n", argv[1]);
+        return 2;
+    }
+
+    if (argc == 2) {
+        // Se c'è solo un parametro (il file), stampa l'intero contenuto del file
+        char linea[256];
+        while (fgets(linea, sizeof(linea), fp) != NULL) {
+            printf("%s", linea);
+        }
+    } else if (argc == 3) {
+        // Se ci sono due parametri (file e codice dipendente), calcola i minuti di permanenza
+        int minutiPermanenza = minuti(fp, argv[2]);
+        if (minutiPermanenza == 0) {
+            printf("Errore: nessuna registrazione per il codice %s.\n", argv[2]);
+        } else if (minutiPermanenza == -1) {
+            printf("Errore: ci sono problemi con i passaggi del codice %s.\n", argv[2]);
+        } else {
+            printf("Il totale dei minuti per il codice %s è: %d minuti.\n", argv[2], minutiPermanenza);
+        }
+    } else {
+        printf("Errore: Numero errato di parametri. Utilizzo: <programma> <file> [codice dipendente].\n");
+        return 3;
+    }
+
+    fclose(fp); // Chiude il file dopo l'elaborazione
+    return 0;
+}
