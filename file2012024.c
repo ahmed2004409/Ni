@@ -48,3 +48,38 @@ void ripulisci(FILE *fin, FILE *fout) {
         fprintf(fout, "%s %d\n", prodotti[i].nome, prodotti[i].quantita);
     }
 }
+
+int main(int argc, char *argv[]) {
+    // Controllo del numero di parametri passati tramite linea di comando
+    if (argc != 3) {
+        fprintf(stderr, "Errore: Numero errato di parametri. Usare: <programma> <file_input> <file_output>\n");
+        return 1;  // Errore nel numero di parametri
+    }
+
+    // Apertura del file di input in modalità lettura
+    FILE *fin = fopen(argv[1], "r");
+    if (fin == NULL) {
+        fprintf(stderr, "Errore nell'apertura del file di input: %s\n", argv[1]);
+        return 2;  // Errore nell'apertura del file di input
+    }
+
+    // Apertura del file di output in modalità scrittura
+    FILE *fout = fopen(argv[2], "w");
+    if (fout == NULL) {
+        fprintf(stderr, "Errore nell'apertura del file di output: %s\n", argv[2]);
+        fclose(fin);  // Chiudiamo il file di input prima di uscire
+        return 3;  // Errore nell'apertura del file di output
+    }
+
+    // Chiamata alla funzione ripulisci per unificare i prodotti
+    ripulisci(fin, fout);
+
+    // Successo, messaggio di esito positivo
+    printf("Operazione completata con successo: i duplicati sono stati unificati e salvati nel file di output.\n");
+
+    // Chiusura dei file
+    fclose(fin);
+    fclose(fout);
+
+    return 0;
+}
