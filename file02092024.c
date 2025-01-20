@@ -8,8 +8,8 @@ struct data{
     int mese;
 }typedef data; 
 
-const int giorni_mese[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+const int giorni_mese[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};//const indica che i valori dentro l'array non possono
+// essere modificati 
 int valida(Data d) {
     if (d.mese < 1 || d.mese > 12) {
         return 0; // mese non valido
@@ -36,7 +36,7 @@ int diff_date(data a, data b)
     // Calcola il numero di giorni tra le due date
     for (int i = a.mese - 1; i < b.mese - 1; i++) {// parto da a.mese-1 il che assomiglia a dire i = 0, solo che a.mese il suo
     //primo elemento sarà 1 e quindi devo fare a.mese-1 per essere nella posizione 0.
-    // con la scritta i < b.mese - 1 cosi io continuo il ciclo fino a 
+    // con la scritta i < b.mese - 1 cosi io continuo il ciclo fino a b.mese 
         giorni += giorni_mese[i];
     }
     giorni += b.giorno - a.giorno;
