@@ -7,33 +7,29 @@ struct nodo {
 } typedef nodo;
 
 // Funzione per ordinare la lista in modo crescente usando Bubble Sort
-void ordinaLista(nodo* head) {
-    if (head == NULL) return;  // Se la lista è vuota, non fare nulla
+nodo* sorting(nodo* head) {
+    if (!head) return NULL;  // Se la lista è vuota, restituisci NULL
 
-    int swapped;
     nodo* current;
-    nodo* prev = NULL;
+    nodo* next;
+    int temp;
 
-    // Ripetere finché non ci sono più scambi da fare
-    do {
-        swapped = 0;
-        current = head;
-
-        // Scorrere la lista
-        while (current != NULL && current->link != NULL) {
-            // Se il valore del nodo corrente è maggiore del valore del nodo successivo
-            if (current->data > current->link->data) {
-                // Scambia i dati dei due nodi
-                int temp = current->data;
-                current->data = current->link->data;
-                current->link->data = temp;
-
-                swapped = 1;  // Segna che uno scambio è stato fatto
+    // Loop per attraversare l'intera lista e ordinare i nodi
+    for (current = head; current != NULL; current = current->link) {
+        for (next = current->link; next != NULL; next = next->link) {
+            // Confronta i valori dei nodi e scambia se necessario
+            if (current->data > next->data) {
+                // Scambio dei valori
+                temp = current->data;
+                current->data = next->data;
+                next->data = temp;
             }
-            current = current->link;  // Passa al nodo successivo
         }
-    } while (swapped);  // Continua finché ci sono stati scambi
+    }
+
+    return head;  // Restituisce la lista ordinata
 }
+
 
 // Funzione per stampare la lista
 void printList(nodo* head) {
