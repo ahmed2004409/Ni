@@ -1,3 +1,5 @@
+// conta h_index del ricercatore 
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
