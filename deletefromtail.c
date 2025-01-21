@@ -12,31 +12,6 @@ nodo* rimuovi_da_coda(nodo* head);
 // Funzione per inserire in coda
 nodo* inserisci_in_coda(nodo* head, int value);
 
-int main() {
-    nodo* head = NULL;
-
-    // Creazione di una lista
-    head = inserisci_in_coda(head, 10);
-    head = inserisci_in_coda(head, 20);
-    head = inserisci_in_coda(head, 30);
-
-    // Rimozione dalla coda
-    head = rimuovi_da_coda(head);
-
-    // Stampa della lista
-    nodo* current = head;
-    while (current != NULL) {
-        printf("%d", current->data);
-        if (current->link != NULL) {
-            printf(" -> ");
-        }
-        current = current->link;
-    }
-    printf("\n");
-
-    return 0;
-}
-
 // Funzione per rimuovere l'ultimo nodo
 nodo* rimuovi_da_coda(nodo* head) {
     if (head == NULL || head->link == NULL) {

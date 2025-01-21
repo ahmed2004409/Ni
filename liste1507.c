@@ -27,7 +27,7 @@ typedef  Nodo * List;
 
         while(temp != NULL)// finchè non è vuota
         {
-            if(temp % 2 == 0)/ controllo pari
+            if(temp % 2 == 0)//controllo pari
             {
                 pari++;// nel caso auemnto 
             }
